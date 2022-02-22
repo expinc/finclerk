@@ -2,9 +2,9 @@
 
 ## Insight
 
-Civillians like me usually use financial cellphone apps to trade financial instruments. Most civillians care about short term market fluctuations. Therefore, most apps are designed to do short term balance analysis, even with some intentional misleading. However, I focus on long term market growth.
+Civillians like me usually use financial cellphone apps to trade financial instruments. Most civillians care about short term market fluctuations. Therefore, most apps are designed to do short term earning analysis, even with some intentional misleading. However, I focus on long term market growth.
 
-There are some professional tools to make investment decisions. But I focus on my earning after the decisions.
+For long term market growth, there are some professional tools to make investment decisions. But I want to know my actual earnings after the previous decisions.
 
 It is hard to find an analysis tool available to civillians that meets my requirement. Therefore, I decided to develop my own earning analysis tool.
 
@@ -26,6 +26,6 @@ Essentially, FinClerk is a web service. Therefore, a **web page** module is need
 
 **Analysis** module analyzes earnings based on the trading records from journal module and the market data from **market data** module.
 
-Market data module fetches instrument prices of specified time from external *market data provider* like [eastmoney](https://www.eastmoney.com/).
+Market data module fetches market data like price from external *market data providers* like [eastmoney](https://www.eastmoney.com/).
 
 ![](./pic/memo-design.png)

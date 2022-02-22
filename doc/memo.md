@@ -11,3 +11,21 @@ It is hard to find an analysis tool available to civillians that meets my requir
 ## Idea
 
 This tool is called **FinClerk**. It helps me record investment activities and analyze investment earnings.
+
+I need following functions in FinClerk:
+1. It supports multiple users since I may publish this tool as a service.
+1. Each time I trade, I record the trading details in FinClerk.
+1. I can view all my historical trades that I recorded in FinClerk.
+1. I can analyze earnings of specified instruments and periods by FinClerk, based on the market fluctuations.
+
+## Design Imagination
+
+Essentially, FinClerk is a web service. Therefore, a **web page** module is needed for web page as the user interface.
+
+**Journal** module handles trading record management. The trading records are persisted in a **light-weight database**.
+
+**Analysis** module analyzes earnings based on the trading records from journal module and the market data from **market data** module.
+
+Market data module fetches instrument prices of specified time from external *market data provider* like [eastmoney](https://www.eastmoney.com/).
+
+![](./pic/memo-design.png)

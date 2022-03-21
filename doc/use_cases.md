@@ -49,7 +49,7 @@ Use case: Record a trade
     1. The product has been added.
 - Actions:
     1. User chooses a product to record a trade.
-    1. User submits *trade type* (buy or sell), *price*, *quantity*.
+    1. User submits *trade side* (buy or sell), *price*, *quantity*.
 - Expected result:
     1. A trade is recorded.
 

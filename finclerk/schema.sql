@@ -3,7 +3,7 @@ pragma encoding = 'UTF-8';
 drop table if exists accounts;
 create table accounts (
     id integer primary key autoincrement,
-    account_name text unique not null,
+    name text unique not null,
     password text not null
 );
 

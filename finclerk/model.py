@@ -8,15 +8,15 @@ class BaseModel(Model):
     class Meta:
         database = db.database
 
-class Accounts(BaseModel):
-    account_name = TextField(unique=True)
+class Account(BaseModel):
+    name = TextField(unique=True)
     password = TextField()
 
     class Meta:
         table_name = 'accounts'
 
-class Products(BaseModel):
-    account = ForeignKeyField(column_name='account_id', field='id', model=Accounts)
+class Product(BaseModel):
+    account = ForeignKeyField(column_name='account_id', field='id', model=Account)
     code = TextField(unique=True)
     name = TextField()
     type = TextField()
@@ -32,13 +32,12 @@ class SqliteSequence(BaseModel):
         table_name = 'sqlite_sequence'
         primary_key = False
 
-class Trades(BaseModel):
+class Trade(BaseModel):
     datetime = TextField()
     price = FloatField()
-    product = ForeignKeyField(column_name='product_id', field='id', model=Products)
+    product = ForeignKeyField(column_name='product_id', field='id', model=Product)
     quantity = FloatField()
     side = TextField()
 
     class Meta:
         table_name = 'trades'
-

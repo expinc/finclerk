@@ -1,4 +1,5 @@
-import db
+import os
+from . import db
 from peewee import *
 
 class UnknownField(object):

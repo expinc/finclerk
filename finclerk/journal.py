@@ -2,8 +2,17 @@ from . import db
 from .model import *
 from typing import List
 
+product_types = (
+    "STOCK",
+    "FUND",
+    "FUTURE",
+    "OPTION"
+)
+
 def add_product(account_id, code, name, type) -> Product:
     # TODO: validate code
+    if type not in product_types:
+        raise Exception("Invalid product type: {}".format(type))
     with db.database.atomic():
         account = Account.select().where(Account.id == account_id).get()
         return Product.create(account=account, code=code, name=name, type=type)

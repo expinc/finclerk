@@ -1,5 +1,4 @@
 from finclerk import db
-from finclerk import model
 import os
 
 with open(os.path.join(os.path.dirname(__file__), 'data.sql'), 'rb') as f:

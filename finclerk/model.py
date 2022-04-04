@@ -1,4 +1,3 @@
-import os
 from . import db
 from peewee import *
 

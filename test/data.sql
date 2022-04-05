@@ -6,3 +6,8 @@ insert into products (code, name, type, account_id) values
     ("code1", "product1", "STOCK", 1),
     ("code2", "product2", "FUND", 1),
     ("code3", "product3", "FUTURE", 2);
+
+insert into trades (product_id, side, price, quantity, datetime) values
+    (1, "BUY", 10.5, 100, "2021-01-01"),
+    (1, "SELL", 5, 50, "2021-05-01"),
+    (2, "BUY", 23.1, 345, "2021-03-01");

@@ -43,7 +43,7 @@ def add_trade(product_id, side, price, quantity, date) -> Trade:
 
 def get_trades_of_product(product_id) -> List[Trade]:
     with db.database.atomic():
-        return Trade.select().where(Trade.product.id == product_id)
+        return Trade.select().where(Trade.product_id == product_id)
 
 def update_trade(id, side, price, quantity) -> int:
     with db.database.atomic():

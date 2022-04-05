@@ -73,8 +73,8 @@ Method: ```GET https://stock.finance.sina.com.cn/fundInfo/api/openapi.php/Caihui
 Parameters:
 
 - symbol: Product code
-- datefrom: Start date
-- dateto: End date
+- datefrom: Start date with format "YYYYMMDD"
+- dateto: End date with format "YYYYMMDD"
 
 Response:
 
@@ -101,7 +101,7 @@ Response:
 Example:
 
 ```
-curl --location --request GET 'https://stock.finance.sina.com.cn/fundInfo/api/openapi.php/CaihuiFundInfoService.getNav?symbol=050002&datefrom=2022-03-01&dateto=2022-03-01'
+curl --location --request GET 'https://stock.finance.sina.com.cn/fundInfo/api/openapi.php/CaihuiFundInfoService.getNav?symbol=050002&datefrom=20220301&dateto=20220301'
 {
     "result": {
         "status": {

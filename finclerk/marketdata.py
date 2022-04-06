@@ -5,7 +5,7 @@ from http import HTTPStatus
 
 def get_stock_close_price(code, date):
     try:
-        conn = http.client.HTTPConnection("q.stock.sohu.com")
+        conn = http.client.HTTPSConnection("q.stock.sohu.com")
         params = urllib.parse.urlencode({
             "code": "cn_" + code,
             "start": date,
@@ -27,7 +27,7 @@ def get_stock_close_price(code, date):
 
 def get_fund_unit_net(code, date):
     try:
-        conn = http.client.HTTPConnection("stock.finance.sina.com.cn")
+        conn = http.client.HTTPSConnection("stock.finance.sina.com.cn")
         params = urllib.parse.urlencode({
             "symbol": code,
             # TODO: convert format

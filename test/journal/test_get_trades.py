@@ -1,4 +1,3 @@
-import peewee
 from test import common
 from assertpy import assert_that
 from finclerk import journal

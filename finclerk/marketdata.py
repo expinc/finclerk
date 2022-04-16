@@ -1,9 +1,10 @@
 import http.client
 import json
 import urllib
+from . import common
 from http import HTTPStatus
 
-def get_stock_close_price(code, date):
+def _get_stock_close_price(code, date):
     try:
         conn = http.client.HTTPSConnection("q.stock.sohu.com")
         params = urllib.parse.urlencode({
@@ -25,7 +26,7 @@ def get_stock_close_price(code, date):
         if conn:
             conn.close()
 
-def get_fund_unit_net(code, date):
+def _get_fund_unit_net(code, date):
     try:
         conn = http.client.HTTPSConnection("stock.finance.sina.com.cn")
         params = urllib.parse.urlencode({
@@ -47,9 +48,13 @@ def get_fund_unit_net(code, date):
             conn.close()
 
 def get_price(type, code, date):
+    # FIXME: handle close date price
+    common.check_date_format(date)
+    # YYYY-MM-DD -> YYYYMMDD
+    date = date.replace("-", "")
     if "STOCK" == type:
-        return get_stock_close_price(code, date)
+        return _get_stock_close_price(code, date)
     elif "FUND" == type:
-        return get_fund_unit_net(code, date)
+        return _get_fund_unit_net(code, date)
     else:
         raise Exception("Invalid code: {}".format(code))

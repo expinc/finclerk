@@ -1,4 +1,5 @@
 import re
+from . import common
 from . import db
 from .model import *
 from typing import List
@@ -28,8 +29,7 @@ def add_product(account_id, code, name, type) -> Product:
         return Product.create(account=account, code=code, name=name, type=type)
 
 def _validate_trade(side, price, quantity, date):
-    if not re.match(datetime_pattern, date):
-        raise Exception("Invalid date format: {}, expects: YYYY-MM-DD".format(date))
+    common.check_date_format(date)
     if side not in trade_sides:
         raise Exception("Invalid trade side: {}".format(side))
     if price <= 0:

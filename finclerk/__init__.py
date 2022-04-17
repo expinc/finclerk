@@ -1,6 +1,6 @@
 import click
 import os
-# from . import auth
+from .web import auth
 # from . import blog
 from . import db
 from flask import Flask
@@ -40,7 +40,7 @@ def create_app(test_config=None):
 
     app.cli.add_command(init_schema_command)
 
-    # TODO: register blueprints
+    app.register_blueprint(auth.blueprint)
     # app.add_url_rule('/', endpoint='index')
 
     return app

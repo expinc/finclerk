@@ -5,14 +5,36 @@ from flask import flash
 from flask import redirect
 from flask import render_template
 from flask import request
+from flask import session
 from flask import url_for
+from werkzeug.security import check_password_hash
 from werkzeug.security import generate_password_hash
 
 blueprint = Blueprint("auth", __name__, url_prefix="/auth")
 
 @blueprint.route("/login", methods=("GET", "POST"))
 def login():
-    # TODO: implement
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        error = None
+        errMsg = "Incorrect username or password"
+
+        try:
+            account = Account.select().where(Account.name == username).get()
+        except Exception:
+            error = errMsg
+
+        if not check_password_hash(account.password, password):
+            error = errMsg
+
+        if error is None:
+            session.clear()
+            session['user_id'] = account.id
+            return redirect(url_for('index'))
+
+        flash(error)
+
     return render_template("auth/login.html")
 
 @blueprint.route("/register", methods=("GET", "POST"))

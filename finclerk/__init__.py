@@ -1,7 +1,7 @@
 import click
 import os
 from .web import auth
-# from . import blog
+from .web import journal
 from . import db
 from flask import Flask
 from flask.cli import with_appcontext
@@ -41,6 +41,7 @@ def create_app(test_config=None):
     app.cli.add_command(init_schema_command)
 
     app.register_blueprint(auth.blueprint)
-    # app.add_url_rule('/', endpoint='index')
+    app.register_blueprint(journal.blueprint)
+    app.add_url_rule('/', endpoint='index')
 
     return app

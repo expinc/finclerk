@@ -1,1 +1,22 @@
 {% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Products{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <table>
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Type</th>
+        </tr>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.code }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.type }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

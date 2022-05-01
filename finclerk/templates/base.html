@@ -5,8 +5,8 @@
     <h1>FinClerk</h1>
     <table>
         <tr>
-            {% if g.user %}
-            <td>{{ g.user['username'] }}</td>
+            {% if g.account %}
+            <td>{{ g.account.name }}</td>
             <td><a href="{{ url_for('auth.logout') }}">Log Out</a></td>
             {% else %}
             <td><a href="{{ url_for('auth.register') }}">Register</a></td>

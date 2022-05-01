@@ -1,7 +1,9 @@
+import functools
 from .. import db
 from ..model import Account
 from flask import Blueprint
 from flask import flash
+from flask import g
 from flask import redirect
 from flask import render_template
 from flask import request
@@ -30,7 +32,7 @@ def login():
 
         if error is None:
             session.clear()
-            session['user_id'] = account.id
+            session['account_id'] = account.id
             return redirect(url_for('index'))
 
         flash(error)
@@ -61,3 +63,28 @@ def register():
         flash(error)
 
     return render_template("auth/register.html")
+
+@blueprint.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
+
+@blueprint.before_app_request
+def load_logged_in_user():
+    account_id = session.get('account_id')
+
+    if account_id is None:
+        g.account = None
+    else:
+        account = Account.select().where(Account.id == account_id).get()
+        g.account = account
+
+def login_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.account is None:
+            return redirect(url_for('auth.login'))
+
+        return view(**kwargs)
+
+    return wrapped_view

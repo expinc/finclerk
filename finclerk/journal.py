@@ -1,4 +1,3 @@
-import re
 from . import common
 from . import db
 from .model import *
@@ -27,6 +26,10 @@ def add_product(account_id, code, name, type) -> Product:
     with db.database.atomic():
         account = Account.select().where(Account.id == account_id).get()
         return Product.create(account=account, code=code, name=name, type=type)
+
+def get_products_in_account(account_id) -> List[Product]:
+    with db.database.atomic():
+        return Product.select().where(Product.account_id == account_id)
 
 def _validate_trade(side, price, quantity, date):
     common.check_date_format(date)

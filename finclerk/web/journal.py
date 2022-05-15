@@ -13,7 +13,8 @@ blueprint = Blueprint("journal", __name__)
 @blueprint.route("/")
 @auth.login_required
 def index():
-    return render_template("journal/index.html")
+    products = journal.get_products_in_account(g.account.id)
+    return render_template("journal/index.html", products=products)
 
 @blueprint.route("/createProduct", methods=("GET", "POST"))
 @auth.login_required

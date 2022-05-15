@@ -36,3 +36,9 @@ def create_product():
             return redirect(url_for("journal.index"))
 
     return render_template("journal/create_product.html")
+
+@blueprint.route("/products/<int:product_id>/trades")
+@auth.login_required
+def trades(product_id):
+    trades = journal.get_trades_of_product(product_id)
+    return render_template("journal/trades.html", trades=trades)

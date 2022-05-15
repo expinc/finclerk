@@ -14,7 +14,7 @@
         </tr>
         {% for product in products %}
         <tr>
-            <td>{{ product.code }}</td>
+            <td><a class="action" href="{{ url_for('journal.trades', product_id=product.id) }}">{{ product.code }}</a></td>
             <td>{{ product.name }}</td>
             <td>{{ product.type }}</td>
         </tr>

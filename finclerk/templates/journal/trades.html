@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <h1>{% block title %}product.name{% endblock %}</h1>
+    <h1>{% block title %} Product: {{ product.name }} {% endblock %}</h1>
+    <a class="action" href="{{ url_for('journal.create_trade', product_id=product.id) }}">Create trade</a>
 {% endblock %}
 
 {% block content %}

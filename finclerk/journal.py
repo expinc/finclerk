@@ -27,6 +27,10 @@ def add_product(account_id, code, name, type) -> Product:
         account = Account.select().where(Account.id == account_id).get()
         return Product.create(account=account, code=code, name=name, type=type)
 
+def get_product(product_id) -> Product:
+    with db.database.atomic():
+        return Product.select().where(Product.id == product_id).get()
+
 def get_products_in_account(account_id) -> List[Product]:
     with db.database.atomic():
         return Product.select().where(Product.account_id == account_id)

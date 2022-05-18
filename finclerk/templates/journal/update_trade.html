@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Edit trade of product {{ product.name }}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        <label>Date</label>
+        <input id="date" name="date" type="date" value="{{ trade.datetime }}" required>
+        <label>Side</label>
+        <select id="side" name="side" required>
+            {% if "BUY" == trade.side %}
+            <option value="BUY" selected>Buy</option>
+            <option value="SELL">Sell</option>
+            {% else %}
+            <option value="BUY">Buy</option>
+            <option value="SELL" selected>Sell</option>
+            {% endif %}
+         </select>
+        <label>Price</label>
+        <input id="price" name="price" type="number" step="0.000001" value="{{ trade.price }}" required>
+        <label>Quantity</label>
+        <input id="quantity" name="quantity" type="number" step="0.000001" value="{{ trade.quantity }}" required>
+
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}

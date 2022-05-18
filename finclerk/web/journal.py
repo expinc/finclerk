@@ -65,3 +65,27 @@ def create_trade(product_id):
             return redirect(url_for("journal.trades", product_id=product.id))
 
     return render_template("journal/create_trade.html", product=product)
+
+@blueprint.route("/products/<int:product_id>/trades/<int:trade_id>", methods=("GET", "POST"))
+@auth.login_required
+def update_trade(product_id, trade_id):
+    product = journal.get_product(product_id)
+    trade = journal.get_trade(trade_id)
+    if request.method == "POST":
+        side = request.form["side"]
+        price = float(request.form["price"])
+        quantity = float(request.form["quantity"])
+        date = request.form["date"]
+
+        error = None
+        try:
+            journal.update_trade(trade.id, side, price, quantity, date)
+        except Exception as ex:
+            error = str(ex)
+
+        if error is not None:
+            flash(error)
+        else:
+            return redirect(url_for("journal.trades", product_id=product.id))
+
+    return render_template("journal/update_trade.html", product=product, trade=trade)

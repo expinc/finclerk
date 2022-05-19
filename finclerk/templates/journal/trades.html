@@ -20,6 +20,7 @@
             <td>{{ trade.price }}</td>
             <td>{{ trade.quantity }}</td>
             <td><a class="action" href="{{ url_for('journal.update_trade', product_id=product.id, trade_id=trade.id) }}">Edit</a></td>
+            <td><a class="action" href="{{ url_for('journal.delete_trade', product_id=product.id, trade_id=trade.id) }}">Delete</a></td>
         </tr>
         {% endfor %}
     </table>

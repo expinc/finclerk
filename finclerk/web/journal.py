@@ -16,7 +16,7 @@ def index():
     products = journal.get_products_in_account(g.account.id)
     return render_template("journal/index.html", products=products)
 
-@blueprint.route("/createProduct", methods=("GET", "POST"))
+@blueprint.route("/products/create", methods=("GET", "POST"))
 @auth.login_required
 def create_product():
     if request.method == "POST":
@@ -66,7 +66,7 @@ def create_trade(product_id):
 
     return render_template("journal/create_trade.html", product=product)
 
-@blueprint.route("/products/<int:product_id>/trades/<int:trade_id>", methods=("GET", "POST"))
+@blueprint.route("/products/<int:product_id>/trades/<int:trade_id>/update", methods=("GET", "POST"))
 @auth.login_required
 def update_trade(product_id, trade_id):
     product = journal.get_product(product_id)
@@ -89,3 +89,9 @@ def update_trade(product_id, trade_id):
             return redirect(url_for("journal.trades", product_id=product.id))
 
     return render_template("journal/update_trade.html", product=product, trade=trade)
+
+@blueprint.route("/products/<int:product_id>/trades/<int:trade_id>/delete")
+@auth.login_required
+def delete_trade(product_id, trade_id):
+    journal.delete_trade(trade_id)
+    return redirect(url_for("journal.trades", product_id=product_id))

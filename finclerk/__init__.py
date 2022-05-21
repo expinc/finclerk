@@ -1,5 +1,6 @@
 import click
 import os
+from .web import analysis as web_analysis
 from .web import auth
 from .web import journal as web_journal
 from . import db
@@ -42,6 +43,7 @@ def create_app(test_config=None):
 
     app.register_blueprint(auth.blueprint)
     app.register_blueprint(web_journal.blueprint)
+    app.register_blueprint(web_analysis.blueprint)
     app.add_url_rule('/', endpoint='index')
 
     return app

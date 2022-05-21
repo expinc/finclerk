@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Analysis earning of product {{ product.name }}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        <label>Start date</label>
+        <input id="startDate" name="startDate" type="date" value="{{ start_date }}" required>
+        <label>End date</label>
+        <input id="endDate" name="endDate" type="date" value="{{ end_date }}" required>
+
+        <input type="submit" value="Analysis">
+    </form>
+
+    <h2>Earning: {{ earning }}</h2>
+{% endblock %}

@@ -1,13 +1,14 @@
 from . import common
 from . import db
+from . import marketdata
 from .model import *
 from typing import List
 
 product_types = (
     "STOCK",
     "FUND",
-    "FUTURE",
-    "OPTION"
+    # "FUTURE",
+    # "OPTION"
 )
 
 trade_sides = (
@@ -19,11 +20,21 @@ trade_sides = (
 datetime_pattern = r"\d\d\d\d-\d\d-\d\d"
 
 def add_product(account_id, code, name, type) -> Product:
-    # TODO: validate code
     if type not in product_types:
         raise Exception("Invalid product type: {}".format(type))
 
+    if_exists = False
+    if "STOCK" == type:
+        if_exists = marketdata.check_stock_exists(code)
+    elif "FUND" == type:
+        if_exists = marketdata.check_fund_exists(code)
+    if not if_exists:
+        raise Exception("Product does not exist: {}".format(code))
+
     with db.database.atomic():
+        if 0 < Product.select().where(Product.account.id == account_id and Product.code == code).count():
+            raise Exception("Product code already exists: {}".format(code))
+
         account = Account.select().where(Account.id == account_id).get()
         return Product.create(account=account, code=code, name=name, type=type)
 

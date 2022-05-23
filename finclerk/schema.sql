@@ -10,7 +10,7 @@ create table accounts (
 drop table if exists products;
 create table products (
     id integer primary key autoincrement,
-    code text unique not null,
+    code text not null,
     name text not null,
     type text not null,
     account_id integer not null,

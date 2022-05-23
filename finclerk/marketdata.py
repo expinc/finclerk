@@ -4,6 +4,42 @@ import urllib
 from . import common
 from http import HTTPStatus
 
+def check_stock_exists(code):
+    try:
+        conn = http.client.HTTPSConnection("q.stock.sohu.com")
+        params = urllib.parse.urlencode({
+            "code": "cn_" + code
+        })
+        url = "/hisHq?" + params
+        conn.request("GET", url)
+        response = conn.getresponse()
+        if HTTPStatus.OK != response.status:
+            raise Exception("Unexpected status: {}".format(response.status))
+        body = response.read()
+        body = json.loads(body)
+        return isinstance(body, list) and 0 == body[0]["status"]
+    finally:
+        if conn:
+            conn.close()
+
+def check_fund_exists(code):
+    try:
+        conn = http.client.HTTPSConnection("stock.finance.sina.com.cn")
+        params = urllib.parse.urlencode({
+            "symbol": code
+        })
+        url = "/fundInfo/api/openapi.php/CaihuiFundInfoService.getNav?" + params
+        conn.request("GET", url)
+        response = conn.getresponse()
+        if HTTPStatus.OK != response.status:
+            raise Exception("Unexpected status: {}".format(response.status))
+        body = response.read()
+        body = json.loads(body)
+        return "0" != body["result"]["data"]["total_num"]
+    finally:
+        if conn:
+            conn.close()
+
 def _get_stock_close_price(code, date):
     try:
         conn = http.client.HTTPSConnection("q.stock.sohu.com")

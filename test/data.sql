@@ -3,11 +3,9 @@ insert into accounts (name, password) values
     ("account2", "pbkdf2:sha256:50000$kJPKsz6N$d2d4784f1b030a9761f5ccaeeaca413f27f2ecb76d6168407af962ddce849f79");
 
 insert into products (code, name, type, account_id) values
-    ("code1", "product1", "STOCK", 1),
-    ("code2", "product2", "FUND", 1),
-    ("code3", "product3", "FUTURE", 2),
     ("601318", "中国平安", "STOCK", 1),
-    ("050002", "博时沪深300指数A", "FUND", 1);
+    ("050002", "博时沪深300指数A", "FUND", 1),
+    ("601318", "中国平安", "STOCK", 2);
 
 insert into trades (product_id, side, price, quantity, datetime) values
     (1, "BUY", 10.5, 100, "2022-01-01"),

@@ -54,5 +54,6 @@ def calculate_earning(product_ids, start_date, end_date):
     for product_id in product_ids:
         start_value = get_cumulative_value(product_id, start_date)
         end_value = get_cumulative_value(product_id, end_date)
-        total_earn += end_value - start_value - get_buy_total(product_id, start_date, end_date)
+        buy_total = get_buy_total(product_id, start_date, end_date)
+        total_earn += end_value - start_value - buy_total
     return total_earn

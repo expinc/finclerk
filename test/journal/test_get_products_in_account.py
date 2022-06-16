@@ -14,6 +14,6 @@ class TestJournalGetProductsInAccount:
 
     def test_ordinary(self):
         products_1 = journal.get_products_in_account(1)
-        assert_that(len(products_1)).is_equal_to(4)
+        assert_that(len(products_1)).is_equal_to(2)
         products_2 = journal.get_products_in_account(2)
         assert_that(len(products_2)).is_equal_to(1)

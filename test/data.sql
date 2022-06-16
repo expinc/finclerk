@@ -7,19 +7,19 @@ insert into products (code, name, type, account_id) values
     ("050002", "博时沪深300指数A", "FUND", 1),
     ("601318", "中国平安", "STOCK", 2);
 
-insert into trades (product_id, side, price, quantity, datetime) values
-    (1, "BUY", 10.5, 100, "2022-01-01"),
-    (1, "SELL", 5, 50, "2022-05-01"),
-    (2, "BUY", 23.1, 345, "2022-03-01");
+-- insert into trades (product_id, side, price, quantity, datetime) values
+--     (1, "BUY", 10.5, 100, "2022-01-01"),
+--     (1, "SELL", 5, 50, "2022-05-01"),
+--     (2, "BUY", 23.1, 345, "2022-03-01");
 
 -- 601318
 insert into trades (product_id, side, price, quantity, datetime) values
-    (4, "BUY", 51.1, 200, "2022-03-01"),
-    (4, "SELL", 50.9, 100, "2022-03-03"),
-    (4, "BUY", 49.2, 400, "2022-03-07"),
-    (4, "SELL", 47.9, 300, "2022-03-09"),
-    (4, "BUY", 46.0, 800, "2022-03-11");
+    (1, "BUY", 51.1, 200, "2022-03-01"),
+    (1, "SELL", 50.9, 100, "2022-03-03"),
+    (1, "BUY", 49.2, 400, "2022-03-07"),
+    (1, "SELL", 47.9, 300, "2022-03-09"),
+    (1, "BUY", 46.0, 800, "2022-03-11");
 
 -- 050002
 insert into trades (product_id, side, price, quantity, datetime) values
-    (5, "BUY", 1.7652, 10000, "2022-03-01");
+    (2, "BUY", 1.7652, 10000, "2022-03-01");

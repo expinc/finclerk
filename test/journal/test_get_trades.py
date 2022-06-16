@@ -14,7 +14,7 @@ class TestJournalGetTrades:
 
     def test_ordinary(self):
         trades = journal.get_trades_of_product(1)
-        assert_that(len(trades)).is_equal_to(2)
+        assert_that(len(trades)).is_equal_to(5)
 
     def test_no_trade(self):
         trades = journal.get_trades_of_product(3)
